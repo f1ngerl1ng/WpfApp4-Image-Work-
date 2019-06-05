@@ -5,10 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4__Image_Work_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
+        Title="MainWindow" Height="530" Width="400">
     <Grid>
-        <Image x:Name="ImageView" HorizontalAlignment="Left" Height="180" Margin="110,60,0,0" VerticalAlignment="Top" Width="165"/>
-        <Button x:Name="btnSelectImage" Content="Выберите фото" HorizontalAlignment="Left" Margin="110,335,0,0" VerticalAlignment="Top" Width="165" Height="50" FontWeight="Bold" FontSize="20" FontFamily="Sitka Display" Click="BtnSelectImage_Click"/>
+        <Image x:Name="ImageView" HorizontalAlignment="Left" Height="210" Margin="40,30,0,0" VerticalAlignment="Top" Width="310"/>
+        <GroupBox x:Name="grbConvert" Padding="5" Margin="0,260,0,65" Height="100">
+                <GroupBox.Header>
+                    <Button Background="Lavender">Выбрать размер</Button>
+                </GroupBox.Header>
+           
+            <StackPanel Margin="0,0,0,0" Height="70">
+                <RadioButton IsChecked="True" Margin="-280,10,0,0" Width="50">50</RadioButton>
+                <RadioButton Margin="-150,-15,0,0" Width="50">100</RadioButton>
+                <RadioButton Margin="-20,-15,0,0" Width="50">300</RadioButton>
+                <RadioButton Margin="110,-15,0,0" Width="50">600</RadioButton>
+                <RadioButton Margin="240,-15,0,0" Width="50">1280</RadioButton>
+                <Button x:Name="btn_Convert" Background="Chartreuse" Content="Конвертировать" Margin="247,10,15,0" Height="30"/>
+            </StackPanel>
+            
+            </GroupBox>
+            <Label x:Name="lblSize"   Content="Исходный размер: " HorizontalAlignment="Left" Margin="50,245,0,0" VerticalAlignment="Top" Width="300" FontWeight="Bold" FontStyle="Italic" AutomationProperties.IsRowHeader="True" FontSize="16"/>
+        
+            <Button x:Name="btnSelectImage" Content="Выберите фото" HorizontalAlignment="Left" Margin="106,420,0,0" VerticalAlignment="Top" Width="165" Height="50" FontWeight="Bold" FontSize="20" FontFamily="Sitka Display" Click="BtnSelectImage_Click"/>
+       
 
     </Grid>
 </Window>

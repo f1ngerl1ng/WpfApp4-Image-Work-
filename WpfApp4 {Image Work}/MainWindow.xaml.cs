@@ -39,6 +39,9 @@ namespace WpfApp4__Image_Work_
                 {
                     var imageFolderSave = "uploads";
                     var filePath = dlg.FileName;
+
+                    CreateViewImage(filePath);
+
                     var image = System.Drawing.Image.FromFile(dlg.FileName);
                     if (!Directory.Exists(imageFolderSave))
                     {
@@ -46,8 +49,7 @@ namespace WpfApp4__Image_Work_
                     }
                     //вхідне фото для обробки
                     var bmpOrigin = new System.Drawing.Bitmap(image);
-
-
+                    
                     var imageName = Guid.NewGuid().ToString() + ".jpg";
                     var imageSave = ImageWorker.CreateImage(bmpOrigin, 200, 200);
                     
@@ -63,6 +65,17 @@ namespace WpfApp4__Image_Work_
                 }
 
             }
+        }
+        private void CreateViewImage(string filePath)
+        {
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(filePath);
+            bitmap.EndInit();
+
+            ImageView.Source = bitmap;
+            lblSize.Visibility = Visibility.Visible;
+            lblSize.Content += bitmap.PixelWidth.ToString() + " x " + bitmap.PixelHeight.ToString();
         }
     }
 }
