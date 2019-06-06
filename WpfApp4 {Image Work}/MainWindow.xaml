@@ -12,23 +12,20 @@
                 <GroupBox.Header>
                     <Button Background="Lavender">Выбрать размер</Button>
                 </GroupBox.Header>
-           
-            <StackPanel Margin="0,0,0,0" Height="70">
-                <RadioButton GroupName="SizeImg" IsChecked="True" Margin="-280,10,0,0" Width="50" Content="50"/>
-                <RadioButton GroupName="SizeImg" Margin="-150,-15,0,0" Width="50" Content="100"/>
-                <RadioButton GroupName="SizeImg" Margin="-20,-15,0,0" Width="50" Content="300"/>
-                <RadioButton GroupName="SizeImg" Margin="110,-15,0,0" Width="50" Content="600"/>
-                <RadioButton GroupName="SizeImg" Margin="240,-15,0,0" Width="50" Content="1280"/>
+
+            <StackPanel x:Name="stcP" Margin="0,0,0,0" Height="70">
+                <RadioButton Name="SizeImg" IsChecked="True" Margin="-280,10,0,0" Width="50" Content="50"></RadioButton>
+                <RadioButton Name="SizeImg1" Margin="-150,-15,0,0" Width="50" Content="100"></RadioButton>
+                <RadioButton Name="SizeImg2" Margin="-20,-15,0,0" Width="50" Content="300" ></RadioButton>
+                <RadioButton Name="SizeImg3" Margin="110,-15,0,0" Width="50" Content="600" ></RadioButton>
+                <RadioButton Name="SizeImg4" Margin="240,-15,0,0" Width="50" Content="1280"></RadioButton>
                 <Button x:Name="btn_Convert" Background="Chartreuse" Content="Конвертировать" Margin="247,10,15,0" Height="30" Click="Btn_Convert_Click"/>
+
             </StackPanel>
-            
-            </GroupBox>
+        </GroupBox>
         <Label x:Name="lblSize"   Content="Исходный размер: " HorizontalAlignment="Left" Margin="50,245,0,0" 
                    VerticalAlignment="Top" Width="300" FontWeight="Bold" FontStyle="Italic" 
                    AutomationProperties.IsRowHeader="True" FontSize="16"/>
-        
-            <Button x:Name="btnSelectImage" Content="Выберите фото" HorizontalAlignment="Left" Margin="106,420,0,0" VerticalAlignment="Top" Width="165" Height="50" FontWeight="Bold" FontSize="20" FontFamily="Sitka Display" Click="BtnSelectImage_Click"/>
-       
-
+        <Button x:Name="btnSelectImage" Content="Выберите фото" HorizontalAlignment="Left" Margin="106,420,0,0" VerticalAlignment="Top" Width="165" Height="50" FontWeight="Bold" FontSize="20" FontFamily="Sitka Display" Click="BtnSelectImage_Click"/>
     </Grid>
 </Window>

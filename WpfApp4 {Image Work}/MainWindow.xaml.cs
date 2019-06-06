@@ -67,17 +67,20 @@ namespace WpfApp4__Image_Work_
 
             ImageView.Source = bitmap;
             lblSize.Visibility = Visibility.Visible;
-            lblSize.Content += bitmap.PixelWidth.ToString() + " x " + bitmap.PixelHeight.ToString();
+            lblSize.Content = "Исходный размер: " + bitmap.PixelWidth.ToString() + " x " + bitmap.PixelHeight.ToString();
         }
-        private void ConvertImage()
+       
+        private void ConvertImage( int size)
         {
             var imageFolderSave = "uploads";
-            Bitmap bmpOrigin = new System.Drawing.Bitmap(image);
+            Bitmap bmpOrigin = new Bitmap(image);
             var imageName = Guid.NewGuid().ToString() + ".jpg";
-            var imageSave = ImageWorker.CreateImage(bmpOrigin, 200, 200);
+            var imageSave = ImageWorker.CreateImage(bmpOrigin, size, size);
 
             if (imageSave == null)
                 throw new Exception("Проблема обробки фото");
+            else
+                MessageBox.Show(imageSave.Height.ToString() + " x " + imageSave.Width.ToString(), "Размер изображения");
 
             var imageSaveEnd = System.IO.Path.Combine(imageFolderSave, imageName);
             imageSave.Save(imageSaveEnd, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -85,8 +88,19 @@ namespace WpfApp4__Image_Work_
 
         private void Btn_Convert_Click(object sender, RoutedEventArgs e)
         {
-            
-            ConvertImage();
+            int size = 0;
+            if (SizeImg.IsChecked == true)
+            { size = Convert.ToInt32(SizeImg.Content.ToString()); }
+            else if (SizeImg1.IsChecked == true)
+            { size = Convert.ToInt32(SizeImg1.Content.ToString()); }
+            else if (SizeImg2.IsChecked == true)
+            { size = Convert.ToInt32(SizeImg2.Content.ToString()); }
+            else if (SizeImg3.IsChecked == true)
+            { size = Convert.ToInt32(SizeImg3.Content.ToString()); }
+            else if (SizeImg4.IsChecked == true)
+            { size = Convert.ToInt32(SizeImg4.Content.ToString()); }
+
+            ConvertImage(size);
         }
     }
 }
