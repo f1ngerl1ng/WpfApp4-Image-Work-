@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace WpfApp4__Image_Work_
 {
@@ -27,6 +28,8 @@ namespace WpfApp4__Image_Work_
         {
             InitializeComponent();
         }
+
+        private System.Drawing.Image image;
 
         private void BtnSelectImage_Click(object sender, RoutedEventArgs e)
         {
@@ -42,22 +45,11 @@ namespace WpfApp4__Image_Work_
 
                     CreateViewImage(filePath);
 
-                    var image = System.Drawing.Image.FromFile(dlg.FileName);
+                    image = System.Drawing.Image.FromFile(dlg.FileName);
                     if (!Directory.Exists(imageFolderSave))
                     {
                         Directory.CreateDirectory(imageFolderSave);
                     }
-                    //вхідне фото для обробки
-                    var bmpOrigin = new System.Drawing.Bitmap(image);
-                    
-                    var imageName = Guid.NewGuid().ToString() + ".jpg";
-                    var imageSave = ImageWorker.CreateImage(bmpOrigin, 200, 200);
-                    
-                    if (imageSave == null)
-                        throw new Exception("Проблема обробки фото");
-
-                    var imageSaveEnd = System.IO.Path.Combine(imageFolderSave, imageName);
-                    imageSave.Save(imageSaveEnd, System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
                 catch (Exception ex)
                 {
@@ -76,6 +68,25 @@ namespace WpfApp4__Image_Work_
             ImageView.Source = bitmap;
             lblSize.Visibility = Visibility.Visible;
             lblSize.Content += bitmap.PixelWidth.ToString() + " x " + bitmap.PixelHeight.ToString();
+        }
+        private void ConvertImage()
+        {
+            var imageFolderSave = "uploads";
+            Bitmap bmpOrigin = new System.Drawing.Bitmap(image);
+            var imageName = Guid.NewGuid().ToString() + ".jpg";
+            var imageSave = ImageWorker.CreateImage(bmpOrigin, 200, 200);
+
+            if (imageSave == null)
+                throw new Exception("Проблема обробки фото");
+
+            var imageSaveEnd = System.IO.Path.Combine(imageFolderSave, imageName);
+            imageSave.Save(imageSaveEnd, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+
+        private void Btn_Convert_Click(object sender, RoutedEventArgs e)
+        {
+            
+            ConvertImage();
         }
     }
 }
