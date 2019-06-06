@@ -67,6 +67,7 @@ namespace WpfApp4__Image_Work_
 
             ImageView.Source = bitmap;
             lblSize.Visibility = Visibility.Visible;
+            grbConvert.Visibility = Visibility.Visible;
             lblSize.Content = "Исходный размер: " + bitmap.PixelWidth.ToString() + " x " + bitmap.PixelHeight.ToString();
         }
        
@@ -101,6 +102,9 @@ namespace WpfApp4__Image_Work_
             { size = Convert.ToInt32(SizeImg4.Content.ToString()); }
 
             ConvertImage(size);
+
+            lblSize.Visibility = Visibility.Hidden;
+            grbConvert.Visibility = Visibility.Hidden;
         }
     }
 }
